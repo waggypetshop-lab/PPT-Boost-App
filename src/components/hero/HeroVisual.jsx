@@ -53,64 +53,38 @@ const SATELLITE_SLIDES = [
   },
 ];
 
-const ORBIT_RINGS = [
-  {
-    size: 'w-[280px] h-[280px] sm:w-[380px] sm:h-[380px] md:w-[500px] md:h-[500px] lg:w-[600px] lg:h-[600px]',
-    border: 'border-orange-500/15',
-    delay: 600,
-  },
-  {
-    size: 'w-[200px] h-[200px] sm:w-[270px] sm:h-[270px] md:w-[350px] md:h-[350px] lg:w-[440px] lg:h-[440px]',
-    border: 'border-white/10',
-    delay: 800,
-  },
-  {
-    size: 'w-[400px] h-[400px] sm:w-[550px] sm:h-[550px] md:w-[750px] md:h-[750px] lg:w-[950px] lg:h-[950px]',
-    border: 'border-white/10',
-    delay: 1000,
-  },
-];
-
-
 export default function HeroVisual() {
   return (
-    <div className="relative flex items-center justify-center min-h-[500px] sm:min-h-[700px] lg:min-h-[900px] overflow-hidden">
-      <div className="relative w-full max-w-[950px] h-[500px] sm:h-[700px] lg:h-[850px] mx-auto">
+    <div className="flex items-center justify-center min-h-[500px] sm:min-h-[700px] lg:min-h-[900px]">
+      <div className="w-full max-w-[950px] h-[500px] sm:h-[700px] lg:h-[850px] mx-auto flex items-center justify-center">
 
-        {/* Orbit Rings — staggered reveal from center outward */}
-        <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-30">
-          {ORBIT_RINGS.map((ring, i) => (
-            <div
-              key={i}
-              className={`absolute ${ring.size} border ${ring.border} rounded-full animate-ring-reveal`}
-              style={{ animationDelay: `${ring.delay}ms`, opacity: 0 }}
+        {/* Asymmetrical Mobile Glow */}
+        <div className="absolute -top-[10%] -right-[20%] w-[300px] h-[300px] bg-orange-500/20 blur-[120px] rounded-full md:hidden pointer-events-none -z-10" />
+
+        {/* Fluid, responsive laptop wrapper */}
+        <div className="relative w-full max-w-[400px] sm:max-w-[500px] lg:max-w-none lg:w-[120%] mx-auto lg:-right-[10%] animate-fade-in-up">
+          <div className="relative">
+            <div className="absolute inset-0 bg-orange-500/30 blur-[100px] scale-110 -z-10" />
+            <img
+              src={heroLaptop}
+              alt="Hero Laptop - Slide 1"
+              className="w-full h-auto object-contain drop-shadow-[0_30px_80px_rgba(249,115,22,0.4)]"
             />
-          ))}
-        </div>
-
-        {/* Center Laptop */}
-        <div className="absolute inset-0 flex items-center justify-center z-50">
-          <div className="animate-fade-in-up w-[260px] sm:w-[360px] md:w-[480px] lg:w-[580px]" style={{ animationDelay: '0ms' }}>
-            <div className="relative">
-              <div className="absolute inset-0 bg-orange-500/30 blur-[100px] scale-110 -z-10" />
-              <img
-                src={heroLaptop}
-                alt="Hero Laptop - Slide 1"
-                className="w-full h-auto drop-shadow-[0_30px_80px_rgba(249,115,22,0.4)]"
-              />
-            </div>
           </div>
         </div>
 
-        {/* Satellite Slides */}
-        {SATELLITE_SLIDES.map((slide) => (
-          <FloatingSlide
-            key={slide.alt}
-            src={fantaSlide}
-            {...slide}
-          />
-        ))}
-
+        {/* Satellite Slides — hide on mobile */}
+        {/*
+        <div className="hidden md:block">
+          {SATELLITE_SLIDES.map((slide) => (
+            <FloatingSlide
+              key={slide.alt}
+              src={fantaSlide}
+              {...slide}
+            />
+          ))}
+        </div>
+        */}
 
       </div>
     </div>

@@ -7,9 +7,9 @@ export default function HeroSection() {
       {/* Atmospheric Background Glow */}
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_60%_50%,rgba(249,115,22,0.15),transparent_70%)]" />
 
-      <section className="relative z-10 min-h-screen flex items-center overflow-hidden">
-        <div className="w-full max-w-[1920px] mx-auto px-6 lg:px-20 pt-20 overflow-hidden">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 xl:gap-32 items-center">
+      <section className="relative z-10 min-h-screen flex items-center w-full">
+        <div className="w-full px-6 lg:px-20 pt-20">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-8 items-center w-full max-w-[1600px] mx-auto">
             <HeroText />
             <HeroVisual />
           </div>

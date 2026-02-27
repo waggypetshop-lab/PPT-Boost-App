@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import HeroSection from '../components/hero/HeroSection';
+import { supabase } from '../lib/supabaseClient';
 
 export default function Home() {
   return (
