@@ -1,0 +1,49 @@
+# .cursorignore
+
+# 1. Node & Package Managers
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# 2. Vite & React Build Outputs
+dist/
+dist-ssr/
+build/
+public/assets/
+
+# 3. TypeScript Caches
+*.tsbuildinfo
+.tsbuildinfo
+
+# 4. Supabase Local CLI Data
+# (Keeps migrations and types visible, but ignores heavy local DB instances)
+supabase/.temp/
+supabase/.branches/
+supabase/db_data/
+# Uncomment the line below if your seed.sql file is massive (thousands of rows)
+# supabase/seed.sql
+
+# 5. Environment Variables (Security & Tokens)
+.env
+.env.*
+!.env.example
+
+# 6. Logs & OS Files
+*.log
+.DS_Store
+Thumbs.db
+.vscode/
+.cursor/
+
+# 7. Media & Large Data Files (AI doesn't need these)
+*.svg
+*.png
+*.jpg
+*.jpeg
+*.gif
+*.webp
+*.mp4
+*.pdf
+*.csv
