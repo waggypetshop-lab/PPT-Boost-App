@@ -9,7 +9,7 @@ export default function HeroSection() {
 
       <section className="relative z-10 min-h-screen flex items-center w-full">
         <div className="w-full px-6 lg:px-20 pt-20">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-8 items-center w-full max-w-[1600px] mx-auto">
+          <div className="grid grid-cols-1 xl:grid-cols-2 gap-12 xl:gap-8 items-center w-full max-w-[1600px] mx-auto">
             <HeroText />
             <HeroVisual />
           </div>

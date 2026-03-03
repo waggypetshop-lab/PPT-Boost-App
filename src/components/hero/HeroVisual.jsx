@@ -3,88 +3,89 @@ import fantaSlide from '../../assets/Fanta-Slide-Good.png';
 import FloatingSlide from './FloatingSlide';
 
 const SATELLITE_SLIDES = [
+  // --- The Core 3 (Mobile Arch -> Desktop Orbit) ---
   {
-    alt: 'Slide 2',
-    positionClass: 'top-[42%] -translate-y-1/2 left-[-5%]',
-    width: '170px',
+    alt: 'Top Left Slide',
+    // Mobile: Center. Desktop: High above the left edge of the laptop.
+    positionClass: 'left-1/2 -translate-x-1/2 -top-[55%] sm:-top-[65%] xl:translate-x-0 xl:left-[10%] xl:-top-[40%]',
+    width: 'w-[120px] sm:w-[160px] xl:w-[140px]',
     delay: 150,
-    floatSpeed: 'fast',
-    hideBelow: 'lg',
-  },
-  {
-    alt: 'Slide 3',
-    positionClass: 'bottom-[-3%] left-[55%] -translate-x-1/2',
-    width: '200px',
-    delay: 250,
-    floatSpeed: 'medium',
-    hideBelow: 'md',
-  },
-  {
-    alt: 'Slide 4',
-    positionClass: 'top-[8%] left-[5%]',
-    width: '150px',
-    delay: 350,
     floatSpeed: 'slow',
-    hideBelow: 'lg',
   },
   {
-    alt: 'Slide 5',
-    positionClass: 'top-[5%] right-[3%]',
-    width: '155px',
+    alt: 'Middle Left Slide',
+    // Mobile: Left. Desktop: Tucked perfectly in the gap between text and laptop.
+    positionClass: 'left-[2%] sm:-left-[5%] md:-left-[20%] -top-[20%] sm:-top-[25%] xl:-left-[15%] xl:top-[10%]',
+    width: 'w-[90px] sm:w-[130px] xl:w-[180px]',
+    delay: 300,
+    floatSpeed: 'medium',
+  },
+  {
+    alt: 'Middle Right Slide',
+    // Mobile: Right. Desktop: Floating to the right of the laptop screen.
+    positionClass: 'right-[2%] sm:-right-[5%] md:-right-[20%] -top-[20%] sm:-top-[25%] xl:-right-[0%] xl:top-[30%]',
+    width: 'w-[90px] sm:w-[130px] xl:w-[130px]',
     delay: 450,
     floatSpeed: 'fast',
-    hideBelow: 'lg',
   },
+
+  // --- The 3 Desktop Expanders ---
   {
-    alt: 'Slide 6',
-    positionClass: 'top-[55%] -translate-y-1/2 right-[-6%]',
-    width: '170px',
-    delay: 550,
-    floatSpeed: 'medium',
-    hideBelow: 'lg',
-  },
-  {
-    alt: 'Slide 7',
-    positionClass: 'top-[-3%] left-[42%] -translate-x-1/2',
-    width: '180px',
-    delay: 650,
+    alt: 'Bottom Left Slide',
+    // Desktop only: Below the laptop on the left.
+    positionClass: 'hidden xl:block xl:left-[10%] xl:top-[110%]',
+    width: 'w-[140px]',
+    delay: 600,
     floatSpeed: 'slow',
-    hideBelow: 'md',
+  },
+  {
+    alt: 'Top Right Slide',
+    // Desktop only: High up, far right, smallest size to create depth.
+    positionClass: 'hidden xl:block xl:right-[10%] xl:-top-[45%]',
+    width: 'w-[100px]',
+    delay: 750,
+    floatSpeed: 'medium',
+  },
+  {
+    alt: 'Bottom Right Slide',
+    // Desktop only: Bottom right corner, massive size.
+    positionClass: 'hidden xl:block xl:-right-[0%] xl:top-[115%]',
+    width: 'w-[180px]',
+    delay: 900,
+    floatSpeed: 'fast',
   },
 ];
+
 
 export default function HeroVisual() {
   return (
     <div className="flex items-center justify-center min-h-[500px] sm:min-h-[700px] lg:min-h-[900px]">
-      <div className="w-full max-w-[950px] h-[500px] sm:h-[700px] lg:h-[850px] mx-auto flex items-center justify-center">
-
-        {/* Asymmetrical Mobile Glow */}
-        <div className="absolute -top-[10%] -right-[20%] w-[300px] h-[300px] bg-orange-500/20 blur-[120px] rounded-full md:hidden pointer-events-none -z-10" />
+      <div className="relative w-full max-w-[950px] h-[500px] sm:h-[700px] lg:h-[850px] mx-auto flex items-center justify-center">
 
         {/* Fluid, responsive laptop wrapper */}
-        <div className="relative w-full max-w-[400px] sm:max-w-[500px] lg:max-w-none lg:w-[120%] mx-auto lg:-right-[10%] animate-fade-in-up">
+        <div className="relative w-full max-w-[400px] sm:max-w-[500px] xl:max-w-none xl:w-[120%] mx-auto xl:-right-[10%] animate-fade-in-up">
           <div className="relative">
-            <div className="absolute inset-0 bg-orange-500/30 blur-[100px] scale-110 -z-10" />
+            <div className="absolute -top-[20%] -left-[10%] w-[150%] h-[150%] bg-orange-500/20 blur-[100px] sm:blur-[120px] rounded-full pointer-events-none -z-10 xl:inset-0 xl:w-full xl:h-full xl:scale-110 xl:top-0 xl:left-0 xl:bg-orange-500/30" />
             <img
               src={heroLaptop}
               alt="Hero Laptop - Slide 1"
               className="w-full h-auto object-contain drop-shadow-[0_30px_80px_rgba(249,115,22,0.4)]"
             />
+            <div className="absolute inset-0 pointer-events-none z-40">
+              {SATELLITE_SLIDES.map((slide) => (
+                <FloatingSlide
+                  key={slide.alt}
+                  src={fantaSlide}
+                  alt={slide.alt}
+                  positionClass={slide.positionClass}
+                  width={slide.width}
+                  delay={slide.delay}
+                  floatSpeed={slide.floatSpeed}
+                />
+              ))}
+            </div>
           </div>
         </div>
-
-        {/* Satellite Slides — hide on mobile */}
-        {/*
-        <div className="hidden md:block">
-          {SATELLITE_SLIDES.map((slide) => (
-            <FloatingSlide
-              key={slide.alt}
-              src={fantaSlide}
-              {...slide}
-            />
-          ))}
-        </div>
-        */}
 
       </div>
     </div>

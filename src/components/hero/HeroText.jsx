@@ -7,7 +7,7 @@ export default function HeroText() {
       initial={{ opacity: 0, x: -30 }}
       animate={{ opacity: 1, x: 0 }}
       transition={{ duration: 0.8, ease: 'easeOut' }}
-      className="flex flex-col items-center text-center lg:items-start lg:text-left justify-center z-20 max-w-2xl mx-auto lg:mx-0 lg:ml-12 xl:ml-24 lg:-mt-8 mt-12 sm:mt-16"
+      className="flex flex-col items-center text-center xl:items-start xl:text-left justify-center z-20 max-w-2xl mx-auto xl:mx-0 xl:ml-12 xl:ml-24 xl:-mt-8 mt-12 sm:mt-16"
     >
       <h2 className="text-[clamp(1rem,1.5vw,1.5rem)] font-bold text-orange-500 tracking-widest uppercase mb-2">
         No Static.
@@ -20,18 +20,18 @@ export default function HeroText() {
         </span>
       </h1>
 
-      <p className="mt-8 text-[clamp(1rem,1.5vw,1.25rem)] text-gray-400 max-w-xl mx-auto lg:mx-0 leading-relaxed">
+      <p className="mt-8 text-[clamp(1rem,1.5vw,1.25rem)] text-gray-400 max-w-xl mx-auto xl:mx-0 leading-relaxed">
         Stop starting from scratch. Download 50+ conversion-ready templates used
         by industry leaders, or master the art of presentation design with our
         expert-led courses.
       </p>
 
-      <div className="flex flex-wrap justify-center lg:justify-start gap-4 mt-10">
+      <div className="flex flex-wrap justify-center xl:justify-start gap-4 mt-10">
         <Link
           to="/templates"
           className="text-[clamp(0.875rem,1.2vw,1.125rem)] px-[clamp(1.5rem,2.5vw,2rem)] py-[clamp(0.75rem,1.2vw,1rem)] whitespace-nowrap bg-gradient-to-r from-yellow-500 to-orange-600 rounded-full font-bold text-white hover:scale-105 transition-transform shadow-[0_0_30px_rgba(249,115,22,0.4)]"
         >
-          Get All Access
+          Sign up for free
         </Link>
 
         <Link

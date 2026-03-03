@@ -5,6 +5,7 @@ const FLOAT_CLASS = {
 };
 
 const HIDE_CLASS = {
+  none: '',
   md: 'hidden md:block',
   lg: 'hidden lg:block',
 };
@@ -16,13 +17,13 @@ export default function FloatingSlide({
   delay,
   floatSpeed = 'medium',
   positionClass,
-  hideBelow = 'lg',
+  hideBelow = 'none',
 }) {
   return (
     <div className={`${HIDE_CLASS[hideBelow]} absolute ${positionClass} z-20`}>
       <div
-        className={`animate-fade-in-up w-[${width}]`}
-        style={{ animationDelay: `${delay}ms`, width }}
+        className={`animate-fade-in-up ${width}`}
+        style={{ animationDelay: `${delay}ms` }}
       >
         <div className={FLOAT_CLASS[floatSpeed]}>
           <img
