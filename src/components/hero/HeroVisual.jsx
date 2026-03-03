@@ -41,7 +41,7 @@ const SATELLITE_SLIDES = [
   {
     alt: 'Top Right Slide',
     // Desktop only: High up, far right, smallest size to create depth.
-    positionClass: 'hidden xl:block xl:right-[10%] xl:-top-[45%]',
+    positionClass: 'hidden xl:block xl:right-[15%] xl:-top-[35%]',
     width: 'w-[100px]',
     delay: 750,
     floatSpeed: 'medium',
