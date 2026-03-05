@@ -1,17 +1,17 @@
 import { Link, NavLink } from 'react-router-dom';
-import { ShoppingCart, Menu, X } from 'lucide-react';
+import { Menu, X, User } from 'lucide-react';
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import logoUpdated from '../assets/logoUpdated.png';
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
-  const cartItemCount = 0; // Will be dynamic later
+  const isLoggedIn = false; // Temporary placeholder
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-[#0a0a0a]/80 backdrop-blur-md border-b border-white/5">
       {/* 3-Column Grid System: Tighter max-width for cohesive spacing */}
-      <div className="grid grid-cols-[auto_1fr_auto] items-center h-20 max-w-6xl mx-auto px-6">
+      <div className="grid grid-cols-[auto_1fr_auto] items-center h-20 w-full px-8">
         
         {/* Column 1: Logo (Left) */}
         <div className="justify-self-start">
@@ -28,7 +28,7 @@ export default function Navbar() {
         </div>
 
         {/* Column 2: Navigation (Center) - Desktop Only */}
-        <div className="justify-self-center hidden md:flex">
+        <div className="justify-self-center hidden lg:flex">
           <div className="bg-white/5 border border-white/10 rounded-full px-8 py-2 backdrop-blur-md flex items-center gap-8">
             <NavLink 
               to="/" 
@@ -49,6 +49,16 @@ export default function Navbar() {
               }
             >
               Templates
+            </NavLink>
+            <NavLink 
+              to="/courses" 
+              className={({ isActive }) =>
+                `text-sm font-medium transition-colors hover:text-orange-500 ${
+                  isActive ? 'text-orange-500 font-bold' : 'text-gray-300'
+                }`
+              }
+            >
+              Courses
             </NavLink>
             <NavLink 
               to="/services" 
@@ -73,26 +83,32 @@ export default function Navbar() {
           </div>
         </div>
 
-        {/* Column 3: Actions (Right) - Grouped Cart + Menu */}
+        {/* Column 3: Actions (Right) - Auth or Menu */}
         <div className="justify-self-end flex items-center gap-4">
-          {/* Shopping Cart Button - Brand Orange Style */}
-          <button className="relative w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center transition-all duration-300 hover:bg-orange-500/20 hover:border-orange-500/50 hover:scale-110 active:scale-95">
-            <ShoppingCart 
-              size={20} 
-              strokeWidth={2} 
-              className="text-orange-500 transition-all duration-300 hover:drop-shadow-[0_0_8px_rgba(249,115,22,0.6)]"
-            />
-            {cartItemCount > 0 && (
-              <span className="absolute -top-1 -right-1 w-5 h-5 bg-red-600 text-white rounded-full text-[10px] font-bold flex items-center justify-center animate-pulse">
-                {cartItemCount}
-              </span>
-            )}
-          </button>
-
+          {!isLoggedIn ? (
+            <div className="hidden lg:flex items-center gap-3">
+              <Link
+                to="/login"
+                className="rounded-full px-5 py-2 text-sm bg-white/5 border border-white/10 text-gray-300 hover:border-orange-500/50 hover:text-orange-500 transition-all"
+              >
+                Sign In
+              </Link>
+              <Link
+                to="/signup"
+                className="rounded-full px-5 py-2 text-sm bg-orange-500 text-black font-semibold hover:bg-orange-400 transition-all"
+              >
+                Sign Up
+              </Link>
+            </div>
+          ) : (
+            <button className="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center hover:border-orange-500/50 transition-all">
+              <User size={20} className="text-orange-500" />
+            </button>
+          )}
           {/* Mobile Menu Button */}
           <button 
             onClick={() => setIsOpen(!isOpen)} 
-            className="md:hidden w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-orange-500 hover:text-black transition-all text-gray-300"
+            className="lg:hidden w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-orange-500 hover:text-black transition-all text-gray-300"
             aria-label="Toggle menu"
           >
             {isOpen ? <X size={20} /> : <Menu size={20} />}
@@ -108,7 +124,7 @@ export default function Navbar() {
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.3, ease: 'easeInOut' }}
-            className="md:hidden bg-[#0a0a0a]/95 backdrop-blur-xl border-t border-white/5 overflow-hidden"
+            className="lg:hidden bg-[#0a0a0a]/95 backdrop-blur-xl border-t border-white/5 overflow-hidden"
           >
             <motion.div 
               initial={{ y: -20 }}
@@ -139,6 +155,17 @@ export default function Navbar() {
                 Templates
               </NavLink>
               <NavLink 
+                to="/courses" 
+                onClick={() => setIsOpen(false)}
+                className={({ isActive }) =>
+                  `block px-5 py-3 rounded-xl text-base font-medium transition-all hover:text-orange-500 hover:bg-white/5 ${
+                    isActive ? 'text-orange-500 font-bold bg-white/5' : 'text-gray-300'
+                  }`
+                }
+              >
+                Courses
+              </NavLink>
+              <NavLink 
                 to="/services" 
                 onClick={() => setIsOpen(false)}
                 className={({ isActive }) => 
@@ -160,6 +187,21 @@ export default function Navbar() {
               >
                 Testimonials
               </NavLink>
+              <div className="border-t border-white/10 my-2" />
+              <Link
+                to="/login"
+                onClick={() => setIsOpen(false)}
+                className="block px-5 py-3 rounded-xl text-base font-medium transition-all hover:text-orange-500 hover:bg-white/5 text-gray-300"
+              >
+                Sign In
+              </Link>
+              <Link
+                to="/signup"
+                onClick={() => setIsOpen(false)}
+                className="block px-5 py-3 rounded-xl text-base font-semibold transition-all hover:text-orange-500 hover:bg-white/5 text-orange-500"
+              >
+                Sign Up
+              </Link>
             </motion.div>
           </motion.div>
         )}
